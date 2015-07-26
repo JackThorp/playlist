@@ -1,0 +1,23 @@
+<h1>NEW TRACKS PAGE </h1>
+
+<%= form_for :track, url: tracks_path  do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :artist %>
+    <%= f.text_field :artist %>
+  </p>
+  <p>
+    <%= f.label :url %>
+    <%= f.text_field :url %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
+
+<%= link_to 'back', tracks_path %>
