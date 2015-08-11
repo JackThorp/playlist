@@ -1,6 +1,6 @@
 <h1>NEW TRACKS PAGE </h1>
 
-<%= form_for :track, url: tracks_path  do |f| %>
+<%= form_for :track, url: tracks_path, :html => {:class => "form-inline"}  do |f| %>
   <p>
     <%= f.label :name %>
     <%= f.text_field :name %>

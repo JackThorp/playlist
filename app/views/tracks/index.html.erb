@@ -1,24 +1,51 @@
-<h1> ALL TRACKS </h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1> ALL TRACKS </h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Artist</th>
-    <th>URL</th>
-    <th colspan="3"></th>
-  </tr>
-  <tr>
-  <% @tracks.each do |track| %>
-    <td><%= track.name %></td>
-    <td><%= track.artist %></td>
-    <td><%= track.url %></td>
-    <td><%= link_to 'show', track_path(track) %></td>
-    <td><%= link_to 'edit', edit_track_path(track) %></td>
-    <td><%= link_to 'delete', track_path(track), method: :delete, data: {confirm: 'Are you sure?'} %></td> 
-  <% end %>
-  </tr>
-</table>
-
-<div>
-  <%= link_to 'new track', new_track_path %>
+      <table class="table">
+        <tr>
+          <th>Name</th>
+          <th>Artist</th>
+          <th>URL</th>
+          <th colspan="3"></th>
+        </tr>
+        <% @tracks.each do |track| %>
+          <tr>
+            <td><%= track.name %></td>
+            <td><%= track.artist %></td>
+            <td><a target="_blank" href=<%= track.url %>><%= track.url.length > 30 ? track.url[0..30] + "..." : track.url%></a></td>
+            <td><%= link_to 'show', track_path(track) %></td>
+            <td><%= link_to 'edit', edit_track_path(track) %></td>
+            <td><%= link_to 'delete', track_path(track), method: :delete, data: {confirm: 'Are you sure?'} %></td> 
+          </tr>
+        <% end %>
+      <tr>
+        <%= form_for :track, url: tracks_path, :html => {:class => "form-inline"} do |f| %>
+          <td>
+          <div class="form-group">
+            <%= f.text_field :name, class: "form-control", placeholder: "name" %>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <%= f.text_field :artist, class: "form-control", placeholder: "artist" %>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <%= f.text_field :url, class: "form-control", placeholder: "URL" %>
+          </div>
+        </td>
+        <td colspan="3">
+          <%= f.submit "Add Track", class: "btn btn-block btn-default"%>
+        </td>
+        <% end %>
+      </tr>
+      </table>
+      
+      </div>
+    </div>
+  </div>
 </div>
+
